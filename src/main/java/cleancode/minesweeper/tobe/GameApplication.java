@@ -6,7 +6,9 @@ public class GameApplication {
 
     public static void main(String[] args) {
         Advanced middle = new Advanced();
+
         Minesweeper minesweeper = new Minesweeper(middle);
+        minesweeper.initialize();
         minesweeper.run();
     }
 
