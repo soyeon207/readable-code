@@ -5,9 +5,7 @@ import cleancode.minesweeper.tobe.gamelevel.GameLevel;
 import cleancode.minesweeper.tobe.position.CellPosition;
 import cleancode.minesweeper.tobe.position.RelativePosition;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class GameBoard {
     private final Cell[][] board;
@@ -30,6 +28,11 @@ public class GameBoard {
 
         List<CellPosition> numberPositionCandidate = cellPositions.subtract(landMinePositions);
         initializeNumberCells(numberPositionCandidate);
+    }
+
+    public CellSnapshot getSnapshot(CellPosition cellPosition) {
+        Cell cell = findCell(cellPosition);
+        return cell.getSnapshot();
     }
 
     private void initializeNumberCells(List<CellPosition> numberPositionCandidate) {
@@ -64,11 +67,6 @@ public class GameBoard {
 
     public int getColSize() {
         return board[0].length;
-    }
-
-    public String getSign(CellPosition cellPosition) {
-        Cell cell = findCell(cellPosition);
-        return cell.getSign();
     }
 
     public void flagAt(CellPosition cellPosition) {
