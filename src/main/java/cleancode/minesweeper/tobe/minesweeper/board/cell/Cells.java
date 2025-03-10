@@ -22,6 +22,7 @@ public class Cells {
     }
 
     public boolean isAllChecked() {
-        return cells.stream().allMatch(Cell::isChecked);
+        return cells.stream()
+                .allMatch(Cell::isChecked);
     }
 }
