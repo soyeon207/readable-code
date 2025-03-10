@@ -17,7 +17,7 @@ public class ConsoleInputHandler implements InputHandler {
             return UserAction.OPEN;
         }
 
-        if("2".equals(userInput)) {
+        if ("2".equals(userInput)) {
             return UserAction.FLAG;
         }
 

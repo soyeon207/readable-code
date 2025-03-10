@@ -18,6 +18,6 @@ public class CellSignFinder {
                 .filter(provider -> provider.supports(snapshot))
                 .findFirst()
                 .map(provider -> provider.provide(snapshot))
-                .orElseThrow(()-> new IllegalArgumentException("확인할 수 없는 셀입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("확인할 수 없는 셀입니다."));
     }
 }

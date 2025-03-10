@@ -4,6 +4,7 @@ public interface Cell {
 
 
     boolean isLandMine();
+
     boolean hasLandMineCount();
 
     CellSnapshot getSnapshot();
