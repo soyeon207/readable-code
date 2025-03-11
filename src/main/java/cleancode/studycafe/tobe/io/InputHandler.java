@@ -23,6 +23,7 @@ public class InputHandler {
         if (doesUserChooseToFixedType(userInput)) {
             return StudyCafePassType.FIXED;
         }
+
         throw new AppException("잘못된 입력입니다.");
     }
 
