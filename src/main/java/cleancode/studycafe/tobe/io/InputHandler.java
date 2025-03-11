@@ -14,13 +14,13 @@ public class InputHandler {
     public StudyCafePassType getPassTypeSelectingUserAction() {
         String userInput = SCANNER.nextLine();
 
-        if ("1".equals(userInput)) {
+        if (doesUserChooseToHourlyType(userInput)) {
             return StudyCafePassType.HOURLY;
         }
-        if ("2".equals(userInput)) {
+        if (doesUserChooseToWeeklyType(userInput)) {
             return StudyCafePassType.WEEKLY;
         }
-        if ("3".equals(userInput)) {
+        if (doesUserChooseToFixedType(userInput)) {
             return StudyCafePassType.FIXED;
         }
         throw new AppException("잘못된 입력입니다.");
@@ -29,11 +29,30 @@ public class InputHandler {
     public StudyCafePass getSelectPass(List<StudyCafePass> passes) {
         String userInput = SCANNER.nextLine();
         int selectedIndex = Integer.parseInt(userInput) - 1;
+        if (doesNotAvailableSelectedInput(passes, selectedIndex)) {
+            throw new AppException("잘못된 입력입니다.");
+        }
         return passes.get(selectedIndex);
+    }
+
+    private static boolean doesNotAvailableSelectedInput(List<StudyCafePass> passes, int selectedIndex) {
+        return selectedIndex + 1 > passes.size() || selectedIndex < 0;
     }
 
     public boolean getLockerSelection() {
         String userInput = SCANNER.nextLine();
+        return doesUserChooseToHourlyType(userInput);
+    }
+
+    private static boolean doesUserChooseToFixedType(String userInput) {
+        return "3".equals(userInput);
+    }
+
+    private static boolean doesUserChooseToWeeklyType(String userInput) {
+        return "2".equals(userInput);
+    }
+
+    private static boolean doesUserChooseToHourlyType(String userInput) {
         return "1".equals(userInput);
     }
 
