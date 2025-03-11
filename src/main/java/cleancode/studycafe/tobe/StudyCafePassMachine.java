@@ -6,8 +6,9 @@ import cleancode.studycafe.tobe.io.OutputHandler;
 import cleancode.studycafe.tobe.io.StudyCafeFileHandler;
 import cleancode.studycafe.tobe.locker.Locker;
 import cleancode.studycafe.tobe.locker.StudyCafeLockerPass;
-import cleancode.studycafe.tobe.model.StudyCafePass;
-import cleancode.studycafe.tobe.model.StudyCafePassType;
+import cleancode.studycafe.tobe.pass.CafePass;
+import cleancode.studycafe.tobe.pass.StudyCafePass;
+import cleancode.studycafe.tobe.pass.StudyCafePassType;
 
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class StudyCafePassMachine {
 
     private final InputHandler inputHandler = new InputHandler();
     private final OutputHandler outputHandler = new OutputHandler();
-    private final StudyCafeFileHandler studyCafeFileHandler = new StudyCafeFileHandler();
     private final Locker locker = new Locker();
+    private final CafePass cafePass = new CafePass();
 
     public void run() {
         try {
@@ -26,19 +27,19 @@ public class StudyCafePassMachine {
             StudyCafePassType studyCafePassType = inputHandler.getPassTypeSelectingUserAction();
 
             if (studyCafePassType.isHourly()) {
-                List<StudyCafePass> hourlyPasses = findCafePassFor(StudyCafePassType.HOURLY);
+                List<StudyCafePass> hourlyPasses = cafePass.findCafePassFor(StudyCafePassType.HOURLY);
                 StudyCafePass selectedPass = inputHandler.getSelectPass(hourlyPasses);
                 outputHandler.showPassOrderSummary(selectedPass, null);
             }
 
             if (studyCafePassType.isWeekly()) {
-                List<StudyCafePass> weeklyPasses = findCafePassFor(StudyCafePassType.WEEKLY);
+                List<StudyCafePass> weeklyPasses = cafePass.findCafePassFor(StudyCafePassType.WEEKLY);
                 StudyCafePass selectedPass = inputHandler.getSelectPass(weeklyPasses);
                 outputHandler.showPassOrderSummary(selectedPass, null);
             }
 
             if (studyCafePassType.isFixed()) {
-                List<StudyCafePass> fixedPasses = findCafePassFor(StudyCafePassType.FIXED);
+                List<StudyCafePass> fixedPasses = cafePass.findCafePassFor(StudyCafePassType.FIXED);
                 StudyCafePass selectedPass = inputHandler.getSelectPass(fixedPasses);
                 StudyCafeLockerPass lockerPass = this.locker.findSamePassBy(selectedPass.getPassType(), selectedPass.getDuration());
                 locker.showPassOrderSummary(selectedPass, lockerPass);
@@ -50,13 +51,6 @@ public class StudyCafePassMachine {
         }
     }
 
-    private List<StudyCafePass> findCafePassFor(StudyCafePassType type) {
-        List<StudyCafePass> studyCafePasses = studyCafeFileHandler.readStudyCafePasses();
-        List<StudyCafePass> typePasses = studyCafePasses.stream()
-            .filter(studyCafePass -> studyCafePass.getPassType() == type)
-            .toList();
-        outputHandler.showPassListForSelection(typePasses);
-        return typePasses;
-    }
+
 
 }
