@@ -4,7 +4,6 @@ import cleancode.studycafe.tobe.io.InputHandler;
 import cleancode.studycafe.tobe.io.OutputHandler;
 import cleancode.studycafe.tobe.io.StudyCafeFileHandler;
 import cleancode.studycafe.tobe.locker.Locker;
-import cleancode.studycafe.tobe.locker.StudyCafeLockerPass;
 
 import java.util.List;
 

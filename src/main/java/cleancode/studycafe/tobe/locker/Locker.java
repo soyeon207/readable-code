@@ -3,6 +3,7 @@ package cleancode.studycafe.tobe.locker;
 import cleancode.studycafe.tobe.io.InputHandler;
 import cleancode.studycafe.tobe.io.OutputHandler;
 import cleancode.studycafe.tobe.io.StudyCafeFileHandler;
+import cleancode.studycafe.tobe.pass.StudyCafeLockerPass;
 import cleancode.studycafe.tobe.pass.StudyCafePass;
 import cleancode.studycafe.tobe.pass.StudyCafePassType;
 
