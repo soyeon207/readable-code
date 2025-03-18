@@ -198,7 +198,7 @@ public class GameBoard {
         return cell.isOpened();
     }
 
-    private boolean isLandMineCellAt(CellPosition cellPosition) {
+    public boolean isLandMineCellAt(CellPosition cellPosition) {
         Cell cell = findCell(cellPosition);
         return cell.isLandMine();
     }
